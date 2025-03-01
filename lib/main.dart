@@ -1,63 +1,72 @@
 import 'package:flutter/material.dart';
-import 'weather_card.dart';
 
 void main() {
-  runApp(const WeatherApp());
+  runApp(const MyApp());
 }
 
-class WeatherApp extends StatelessWidget {
-  const WeatherApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: const Text("Weather"),
-          backgroundColor: Colors.transparent,
-          elevation: 0,
-          centerTitle: true,
-          foregroundColor: Colors.black,
-        ),
-        body: Column(
-          children: [
-            const WeatherCard(
-              location: "Dhaka",
-              weather: "Thunder",
-              temperature: 20,
-              icon: Icons.flash_on,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "Around the world",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+      home: ProfileCard(),
+    );
+  }
+}
+
+class ProfileCard extends StatelessWidget {
+  const ProfileCard({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.blueGrey[100],
+      body: Center(
+        child: Card(
+          elevation: 4,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Profile Image
+                CircleAvatar(
+                  radius: 50,
+                  backgroundImage: AssetImage('images/asfsafasdfas.jpg'),
                 ),
-              ),
+                const SizedBox(height: 10),
+                // Name
+                Text(
+                  "John Romel S. Sabado",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                // Job Title
+                Text(
+                  "Flutter Developer",
+                  style: TextStyle(
+                    fontSize: 18,
+                    color: Colors.grey[700],
+                  ),
+                ),
+                const SizedBox(height: 10),
+                // Follow Button
+                ElevatedButton(
+                  onPressed: () {
+                    print("Followed John Romel!");
+                  },
+                  child: Text("Follow"),
+                ),
+              ],
             ),
-            const WeatherCard(
-              location: "California",
-              weather: "Clear",
-              temperature: 6,
-              icon: Icons.wb_sunny,
-            ),
-            const WeatherCard(
-              location: "Beijing",
-              weather: "Mostly sunny",
-              temperature: 5,
-              icon: Icons.wb_sunny_outlined,
-            ),
-            const WeatherCard(
-              location: "Moscow",
-              weather: "Cloudy",
-              temperature: -4,
-              icon: Icons.cloud,
-            ),
-          ],
+          ),
         ),
       ),
     );
